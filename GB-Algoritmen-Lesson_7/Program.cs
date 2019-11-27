@@ -13,7 +13,7 @@ namespace GB_Algoritmen_Lesson_7
     {
         static Dictionary<string, Act> dict = new Dictionary<string, Act>
         {
-            { "1", new Act },
+            { "1", new AdjacencyMatrixView() },
         };
 
         static void Main(string[] args)
@@ -23,6 +23,7 @@ namespace GB_Algoritmen_Lesson_7
             var n = "";
             WriteLine("С# - Алгоритмы и структуры данных. Задание 7.");
             WriteLine("Кузнецов");
+            var list = new HashSet<char>(dict.Select(x => x.Key[0]));
             while (n != "0")
             {
                 WriteLine("Введите номер интересующей вас задачи:" + Environment.NewLine +
@@ -32,12 +33,12 @@ namespace GB_Algoritmen_Lesson_7
                     "4.  * Создать библиотеку функций для работы с графами." + Environment.NewLine +
                     "0. Нажмите для выхода из программы.");
 
-                n = q.Question<int>("Введите ", new HashSet<char>() { '0', '1', '2', '3', '4' }, true);
+                n = q.Question<int>("Введите ", list, true);
                 if (n == "0") break;
                 dict[n].Work();
             }
 
-            Console.ReadKey();
+            ReadKey();
         }
     }
 
