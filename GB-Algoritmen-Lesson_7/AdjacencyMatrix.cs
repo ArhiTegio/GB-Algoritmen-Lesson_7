@@ -16,9 +16,11 @@ namespace GB_Algoritmen_Lesson_7
         {
             Matrix = new SerializableDictionary<string, int[]>();
             Name = new SerializableDictionary<string, int>();
+            Pos = new SerializableDictionary<int, string>();
             var step = 0;
             foreach (var e in arrayConnection)
             {
+                Pos.Add(step, e.Key);
                 Name.Add(e.Key, step);
                 ++step;
             }
@@ -34,7 +36,9 @@ namespace GB_Algoritmen_Lesson_7
         public AdjacencyMatrix()
         {
         }
-       
+
+        public SerializableDictionary<int, string> Pos { get; set; }
+
         public SerializableDictionary<string, int> Name { get; set; }
        
         public SerializableDictionary<string, int[]> Matrix { get; set; }
@@ -47,6 +51,7 @@ namespace GB_Algoritmen_Lesson_7
         {
             var load = FileOperation<AdjacencyMatrix>.LoadFromXmlFormat(path);
             Name = load.Name;
+            Pos = load.Pos;
             Matrix = load.Matrix;
         }
 
